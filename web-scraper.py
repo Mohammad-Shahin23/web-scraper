@@ -8,6 +8,13 @@ URL = 'https://en.wikipedia.org/wiki/History_of_Mexico'
 
 
 def get_citations_needed_count(URL):
+    """
+    Retrieves the number of citations needed in a Wikipedia article.
+
+    Args URL: The URL of the Wikipedia article.
+
+    Returns int: The count of citations needed in the article.
+    """
     result = requests.get(URL)
     soup = bs4.BeautifulSoup(result.text, 'lxml')
     # print(soup)
@@ -17,6 +24,13 @@ def get_citations_needed_count(URL):
 print(get_citations_needed_count(URL))
 
 def get_citations_needed_report(URL):
+    """
+    Retrieves a report of passages in a Wikipedia article that require citations.
+
+    Args URL: The URL of the Wikipedia article.
+
+    Returns:  A report containing the passages requiring citations.
+    """
     result = requests.get(URL)
     soup = bs4.BeautifulSoup(result.text, 'lxml')
     citations = soup.find_all('sup', class_='noprint Inline-Template Template-Fact')
